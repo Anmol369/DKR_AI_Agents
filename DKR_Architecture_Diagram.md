@@ -1,6 +1,126 @@
 # Dynamic Knowledge Repository (DKR) Architecture
 ## Complete System Visual
 
+graph TB
+
+%% -------------------- AI AGENT LAYER --------------------
+subgraph A["AI AGENT LAYER (Goose, Cursor, etc.)"]
+    Task["📋 User Task Request"]
+    Agent["🤖 AI Agent — LLM + Execution"]
+    Exec["⚡ Task Execution"]
+    Output["✅ Task Output"]
+end
+
+%% -------------------- DKR INFRASTRUCTURE --------------------
+subgraph B["DKR INFRASTRUCTURE — Three MCP Servers"]
+
+    %% Server 1
+    subgraph B1["SERVER 1: Context Strategy Observatory"]
+        S1_Hook1["🎣 Task Start Hook"]
+        S1_Hook2["🎣 Context Load Hook"]
+        S1_Hook3["🎣 Task Complete Hook"]
+        S1_Classify["🏷️ Strategy Classifier"]
+        S1_Measure["📊 Outcome Measurement"]
+        S1_Store["💾 Experience Storage"]
+    end
+
+    %% Server 2
+    subgraph B2["SERVER 2: Adaptive Strategy Selector"]
+        S2_Pattern["🧩 Pattern Library"]
+        S2_Match["🔍 Pattern Matching"]
+        S2_Recommend["💡 Recommendation Engine"]
+        S2_Explain["📝 Explanation Generator"]
+        S2_Confidence["📈 Confidence Scoring"]
+    end
+
+    %% Server 3
+    subgraph B3["SERVER 3: Bootstrap Learning Engine"]
+        S3_Generate["🧬 Variation Generator"]
+        S3_Experiment["🔬 Experimentation Framework"]
+        S3_Test["🧪 A/B Testing"]
+        S3_MetaLearn["🎓 Meta-Learning System"]
+        S3_Promote["⬆️ Strategy Promotion"]
+    end
+end
+
+%% -------------------- DKR SCHEMA --------------------
+subgraph C["DYNAMIC KNOWLEDGE REPOSITORY (DKR)"]
+    DB["🗄️ PostgreSQL Database"]
+
+    subgraph C1["DKR Schema"]
+        Exp["📦 Experiences Table"]
+        Pat["🎯 Patterns Table"]
+        Exper["🔬 Experiments Table"]
+        Meta["🧠 Meta-Learning Table"]
+    end
+
+    Cache["⚡ Redis Cache — Fast Retrieval"]
+    Vector["🎯 Vector Search — Semantic Matching"]
+end
+
+%% -------------------- BOOTSTRAP CYCLE --------------------
+subgraph D["BOOTSTRAP CYCLE — Compound Learning"]
+    BC1["1️⃣ Better Context Selection"]
+    BC2["2️⃣ Successful Tasks"]
+    BC3["3️⃣ Captured in DKR"]
+    BC4["4️⃣ Learned Patterns"]
+    BC5["5️⃣ Even Better Selection"]
+    BC6["6️⃣ Exponential Growth"]
+end
+
+%% -------------------- THEORETICAL FOUNDATION --------------------
+subgraph E["THEORETICAL FOUNDATION"]
+    TF1["📐 Understanding Formation — U = I(K;N)"]
+    TF2["⚡ UFV = dU/dt — Energy of Learning"]
+    TF3["🌳 PAS Architecture — Personal Augmentation System"]
+    TF4["🔄 Engelbart's CODIAK — Concurrent Dev, Integration, Application"]
+end
+
+%% -------------------- MAIN FLOW --------------------
+Task --> Agent
+Agent --> S2_Recommend
+S2_Recommend --> Agent
+Agent --> Exec
+Exec --> Output
+
+%% Server 1 Flow
+Task --> S1_Hook1 --> S1_Classify
+Exec --> S1_Hook2 --> S1_Classify
+Output --> S1_Hook3 --> S1_Measure --> S1_Store --> Exp
+
+%% Server 2 Flow
+Task --> S2_Match --> S2_Pattern --> Pat --> S2_Recommend
+S2_Recommend --> S2_Explain
+S2_Recommend --> S2_Confidence
+
+%% Server 3 Flow
+Pat --> S3_Generate --> S3_Experiment --> S3_Test --> S3_MetaLearn --> S3_Promote --> Exper --> Pat
+S3_MetaLearn --> Meta
+
+%% DKR Internal
+Exp --> DB
+Pat --> DB
+Exper --> DB
+Meta --> DB
+DB --> Cache
+DB --> Vector
+Cache --> S2_Pattern
+Vector --> S2_Match
+
+%% Bootstrap Cycle
+S2_Recommend --> BC1 --> BC2 --> BC3 --> BC4 --> BC5 --> BC6 -.-> BC1
+
+%% Theory Connections
+TF1 -.-> S1_Measure
+TF2 -.-> S3_MetaLearn
+TF3 -.-> S2_Pattern
+TF4 -.-> S1_Classify
+
+
+
+
+
+
 ```mermaid
 graph TB
     subgraph "AI AGENT LAYER (goose, Cursor, etc.)"
